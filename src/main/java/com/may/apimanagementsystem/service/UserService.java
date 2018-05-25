@@ -94,6 +94,8 @@ public class UserService {
     }
 
     public List<User> searchUserByUserName(String userName){
+
         return userMapper.searchUsersByUserName(userName);
     }
+
 }

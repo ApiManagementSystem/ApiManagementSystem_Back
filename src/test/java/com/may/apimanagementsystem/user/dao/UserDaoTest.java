@@ -61,5 +61,4 @@ public class UserDaoTest {
         List<User> users = userMapper.searchUsersByUserName("%q%");
         assertEquals(1, users.size());
     }
-
 }
