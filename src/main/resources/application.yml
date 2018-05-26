@@ -44,15 +44,3 @@ spring:
           enabled: true
           db-type: mysql
       filters: stat,wall,slf4j
-      
-
----
-spring:
-  profiles: dev
-  datasource:
-    url: jdbc:h2:mem:;MODE=MYSQL;
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
-    data: classpath:h2/data_prepare.sql
-    schema: classpath:h2/schema.sql
