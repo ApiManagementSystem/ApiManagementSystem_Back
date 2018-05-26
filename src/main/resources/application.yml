@@ -1,0 +1,77 @@
+spring:
+  profiles:
+    active: prod
+
+server:
+  port: 8081
+  servlet:
+    context-path: /ApiManagementSystem
+
+mybatis:
+  mapper-locations: classpath*:sqlMapper/*.xml
+  configuration:
+    cache-enabled: true
+    call-setters-on-nulls: true
+
+<<<<<<< HEAD
+# 分页配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+=======
+>>>>>>> 196c8350b129ecc154857ba2953b0c2d54a32390
+---
+spring:
+  profiles: prod
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/ApiMockSystem?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: root
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      timeBetweenEvictionRunsMillis: 6000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 'x'
+      validation-query-timeout: 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: false
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 10000
+          enabled: true
+        wall:
+          enabled: true
+          db-type: mysql
+      filters: stat,wall,slf4j
+      
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:h2:mem:;MODE=MYSQL;
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    data: classpath:h2/data_prepare.sql
+    schema: classpath:h2/schema.sql
+  freemarker:
+    #关闭缓存
+    cache: false
+    request-context-attribute: request
+    #模板加载的位置
+    template-loader-path: classpath:/templates
+    #前缀
+    suffix: .html
+    #后缀
+    prefix: /html/
