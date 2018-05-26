@@ -43,7 +43,7 @@ public class MessageDaoTest {
         message.setUserId(1000);
         message.setSendUserId(1001);
         message.setTeamId(1002);
-        boolean flag = messageMapper.inviteInsertMessage(message);
+        boolean flag = messageMapper.insertMessage(message);
         assertEquals(true,flag);
     }
 
