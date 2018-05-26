@@ -20,13 +20,13 @@ public class UserService {
     @Resource
     private UserMapper userMapper;
 
-    public void addUser(User user){
+    public void addUser(User user) {
         checkAddUserParameter(user);
         if (!userMapper.insertUser(user))
             throw new ServerException();
     }
 
-    public User checkUser(User user){
+    public User checkUser(User user) {
         User getUser = userMapper.findUserByUserName(user.getUserName());
         Objects.requireNonNull(getUser, USERNAME_NOT_EXIST);
         if (!user.getPassword().equals(getUser.getPassword()))
@@ -34,7 +34,7 @@ public class UserService {
         return user;
     }
 
-    private void checkAddUserParameter(User user){
+    private void checkAddUserParameter(User user) {
         if (user.getUserName() == null || user.getPassword() == null ||
                 user.getEmail() == null)
             throw new ParameterException(PARAMETER_CANNOT_NULL);
@@ -43,18 +43,18 @@ public class UserService {
         checkEmail(user.getEmail());
     }
 
-    public void removeUser(int userId){
+    public void removeUser(int userId) {
         if (!userMapper.deleteUser(userId))
             throw new ServerException();
     }
 
-    public void updateUser(User user){
+    public void updateUser(User user) {
         checkUpdateUserParameter(user);
         if (!userMapper.updateUser(user))
             throw new ServerException();
     }
 
-    private void checkUpdateUserParameter(User user){
+    private void checkUpdateUserParameter(User user) {
         if (user.getUserName() != null)
             checkUserName(user.getUserName());
         if (user.getEmail() != null)
@@ -69,7 +69,7 @@ public class UserService {
                 throw new ParameterException(SEX_WRONG);
     }
 
-    private void checkUserName(String userName){
+    private void checkUserName(String userName) {
         User user = userMapper.findUserByUserName(userName);
         if (user != null && !user.getUserName().equals(userName))
             throw new ParameterException(DOUBLE_USER_NAME);
@@ -77,23 +77,25 @@ public class UserService {
             throw new ParameterException(USER_NAME_IS_TOO_LONG);
     }
 
-    private void checkEmail(String email){
+    private void checkEmail(String email) {
         if (!isEmail(email))
             throw new ParameterException(EMAIL_FORMAT_WRONG);
     }
 
-    private void checkPassword(String password){
+    private void checkPassword(String password) {
         if (password.length() > 20)
             throw new ParameterException(PASSWORD_IS_TOO_LONG);
     }
 
-    public User getUserByUserId(int userId){
+    public User getUserByUserId(int userId) {
         User user = userMapper.findUserByUserId(userId);
         Objects.requireNonNull(user);
         return user;
     }
 
-    public List<User> searchUserByUserName(String userName){
+    public List<User> searchUserByUserName(String userName) {
+
         return userMapper.searchUsersByUserName(userName);
     }
+
 }

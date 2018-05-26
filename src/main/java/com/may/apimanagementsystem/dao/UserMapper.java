@@ -5,11 +5,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
 public interface UserMapper {
 
     boolean insertUser(User user);
-
 
     boolean deleteUser(int userId);
 
@@ -20,5 +20,4 @@ public interface UserMapper {
     User findUserByUserName(String userName);
 
     List<User> searchUsersByUserName(String userName);
-
 }
