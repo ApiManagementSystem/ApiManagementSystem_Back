@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
+@Repository
 public interface TeamMapper {
 
 
@@ -13,7 +13,7 @@ public interface TeamMapper {
 
     boolean deleteTeam(int teamId);
 
-    boolean updateTeam( Team team);
+    boolean updateTeam(Team team);
 
     Team findTeamByTeamId(int teamId);
 

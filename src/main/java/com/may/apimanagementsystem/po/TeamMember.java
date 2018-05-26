@@ -25,7 +25,7 @@ public class TeamMember {
 
     public void setUserId(int userId) {
         this.userId = userId;
-}
+    }
 
     public int getTeamId() {
         return teamId;

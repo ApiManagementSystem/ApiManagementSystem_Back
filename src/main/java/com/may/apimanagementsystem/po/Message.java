@@ -1,13 +1,13 @@
 package com.may.apimanagementsystem.po;
 
 public class Message {
-  private   int messageId;
-  private   int userId;
-  private   int delFlag;
-  private   int readFlag;
-  private   int sendUserId;
-  private   int teamId;
-  private  String userName;
+    private int messageId;
+    private int userId;
+    private int delFlag;
+    private int readFlag;
+    private int sendUserId;
+    private int teamId;
+    private String userName;
 
     public String getUserName() {
         return userName;

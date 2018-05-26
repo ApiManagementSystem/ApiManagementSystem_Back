@@ -12,23 +12,21 @@
     </resultMap>
 
     <sql id="message_columns">
-        message_id,user_id,del_flag,read_flag,send_user_id,team_id
+        message_id, user_id, del_flag, read_flag, send_user_id, team_id
     </sql>
 
-    <insert id="inviteInsertMessage" parameterType="com.may.apimanagementsystem.po.Message" keyProperty="messageId" useGeneratedKeys="true">
-     INSERT INTO message(user_id,send_user_id,team_id)
-     VALUES (#{userId},#{sendUserId},#{teamId})
-    </insert>
 
-    <insert id="insertMessage" parameterType="com.may.apimanagementsystem.po.Message" keyProperty="messageId" useGeneratedKeys="true">
-      INSERT INTO message(user_id,send_user_id,team_id)
-      VALUES (#{userId},#{sendUserId},#{teamId})
+    <insert id="insertMessage" parameterType="com.may.apimanagementsystem.po.Message" keyProperty="messageId"
+            useGeneratedKeys="true">
+        INSERT INTO message (user_id, send_user_id, team_id)
+        VALUES (#{userId}, #{sendUserId}, #{teamId})
     </insert>
 
     <select id="selectMessages" parameterType="java.lang.Integer" resultMap="message">
-      SELECT <include refid="message_columns"/>
-      FROM message
-      WHERE user_id=#{userId} AND del_flag = '0'
+        SELECT
+        <include refid="message_columns"/>
+        FROM message
+        WHERE user_id=#{userId} AND del_flag = '0'
     </select>
 
     <delete id="deleteMessage" parameterType="java.lang.Integer">
@@ -38,9 +36,13 @@
     </delete>
 
     <select id="readMyMessage" parameterType="java.lang.Integer" resultMap="message">
-        SELECT message_id,send_user_id,team_id,read_flag
-        FROM  message
-        WHERE message_id=#{messageId} AND del_flag = '0'
+        SELECT
+            message_id,
+            send_user_id,
+            team_id,
+            read_flag
+        FROM message
+        WHERE message_id = #{messageId} AND del_flag = '0'
     </select>
 
 </mapper>

@@ -49,52 +49,44 @@ public class TeamController {
     }
 
     @GetMapping("userTeam")
-    public ResponseEntity<List<Team>> showTeamsByuserId(int userId){
-        List<Team> teams = teamService.searchMyTeamByuserId( userId);
+    public ResponseEntity<List<Team>> showTeamsByuserId(int userId) {
+        List<Team> teams = teamService.searchMyTeamByuserId(userId);
         return new ResponseEntity<>(200, SUCCESS, teams);
     }
 
 
-
-
     /*团队成员*/
     @GetMapping("teamMember")
-    public ResponseEntity<List<User>> selectTeamMember(int teamId)
-    {
-        List<User> members =teamMemberServise.selectTeamMembers(teamId);
+    public ResponseEntity<List<User>> selectTeamMember(int teamId) {
+        List<User> members = teamMemberServise.selectTeamMembers(teamId);
         return new ResponseEntity<>(200, SUCCESS, members);
     }
 
     @PostMapping("teamMember")
-    public ResponseEntity<TeamMember> addTeamMember(TeamMember teamMember)
-    {
+    public ResponseEntity<TeamMember> addTeamMember(TeamMember teamMember) {
         teamMemberServise.addTeamMerber(teamMember);
         return new ResponseEntity<>(200, SUCCESS, teamMember);
     }
 
     @DeleteMapping("teamMember")
-    public ResponseEntity<TeamMember> deleteTeamMember(TeamMember teamMember)
-    {
+    public ResponseEntity<TeamMember> deleteTeamMember(TeamMember teamMember) {
         teamMemberServise.deleteTeamMember(teamMember);
-        return new ResponseEntity<>(200,SUCCESS,null);
+        return new ResponseEntity<>(200, SUCCESS, null);
     }
 
     /*团队项目*/
 
     @DeleteMapping("teamProject")
-    public  ResponseEntity<TeamProject> deleteTeamproject(int projectId)
-    {
+    public ResponseEntity<TeamProject> deleteTeamproject(int projectId) {
         teamProjectServise.removeTeamProject(projectId);
-        return new ResponseEntity<>(200,SUCCESS,null);
+        return new ResponseEntity<>(200, SUCCESS, null);
     }
 
     @GetMapping("teamProject")
-    public ResponseEntity<List<Project>> selectTeamproject(int teamId)
-    {
-        List<Project> projects=teamProjectServise.searchMyTeamByuserId(teamId);
+    public ResponseEntity<List<Project>> selectTeamproject(int teamId) {
+        List<Project> projects = teamProjectServise.searchMyTeamByuserId(teamId);
         return new ResponseEntity<>(200, SUCCESS, projects);
     }
 
 
-    
 }

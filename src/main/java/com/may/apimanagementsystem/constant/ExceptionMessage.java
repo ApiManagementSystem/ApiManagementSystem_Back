@@ -14,6 +14,6 @@ public class ExceptionMessage {
     public static final String PARAMETER_CANNOT_NULL = "信息没有填写完整";
 
     /*team*/
-    public static final String TEAM_NAME_IS_EMPTY="团队名称不能为空";
+    public static final String TEAM_NAME_IS_EMPTY = "团队名称不能为空";
 
 }

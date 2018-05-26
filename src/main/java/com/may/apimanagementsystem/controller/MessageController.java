@@ -20,7 +20,7 @@ public class MessageController {
 
     @PostMapping("invite")
     public ResponseEntity<Message> inviteAddmessage(Message message) {
-         messageServise.inviteAddMessage(message);
+        messageServise.inviteAddMessage(message);
         return new ResponseEntity<>(200, SUCCESS, null);
     }
 
@@ -31,21 +31,19 @@ public class MessageController {
     }
 
     @DeleteMapping("{messageId}")
-    public ResponseEntity<Message> deleteMessage(@PathVariable int messageId)
-    {
+    public ResponseEntity<Message> deleteMessage(@PathVariable int messageId) {
         messageServise.removeMessage(messageId);
         return new ResponseEntity<>(200, SUCCESS, null);
     }
 
     @GetMapping("{messageId}")
-    public  ResponseEntity<Message> readMessage(@PathVariable int messageId)
-    {
-       Message message=messageServise.rdMyMessage(messageId);
+    public ResponseEntity<Message> readMessage(@PathVariable int messageId) {
+        Message message = messageServise.rdMyMessage(messageId);
         return new ResponseEntity<>(200, SUCCESS, message);
     }
 
     @GetMapping("userMessage")
-    public ResponseEntity<List<Message>> showMyMessages(int userId){
+    public ResponseEntity<List<Message>> showMyMessages(int userId) {
         List<Message> messages = messageServise.selectMyMessages(userId);
         return new ResponseEntity<>(200, SUCCESS, messages);
     }

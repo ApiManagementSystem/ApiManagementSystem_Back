@@ -42,6 +42,7 @@ public class Team {
     public int getCreateuserId() {
         return createuserId;
     }
+
     public void setCreateuserId(int createuserId) {
         this.createuserId = createuserId;
     }
