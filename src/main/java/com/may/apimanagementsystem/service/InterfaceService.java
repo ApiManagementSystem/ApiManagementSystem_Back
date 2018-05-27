@@ -28,22 +28,22 @@ public class InterfaceService {
     public boolean addInterface(Interfaces interfaces) {
         boolean flag = false;
         checkAddInterfaceParameter(interfaces);
-        if(!interfaceMapper.insertInterface(interfaces)){
+        boolean result = interfaceMapper.insertInterface(interfaces);
+        if(!result) {
             throw new ServerException();
-        }else {
-            flag = true;
         }
+        flag = true;
         return flag;
     }
 
     public boolean updateInterface(Interfaces interfaces) {
         boolean flag = false;
         checkUpdateInterfaceParameter(interfaces);
-        if(!interfaceMapper.updateInterface(interfaces)){
+        boolean result = interfaceMapper.updateInterface(interfaces);
+        if(!result) {
             throw new ServerException();
-        }else {
-            flag =  true;
         }
+        flag =  true;
         return flag;
     }
 
@@ -58,11 +58,11 @@ public class InterfaceService {
 
     public boolean removeInterface(int interfaceId) {
         boolean flag = false;
-        if(!interfaceMapper.deleteInterface(interfaceId)){
+        boolean result = interfaceMapper.deleteInterface(interfaceId);
+        if(!result) {
             throw new ServerException();
-        }else {
-            flag = true;
         }
+        flag = true;
         return flag;
     }
 

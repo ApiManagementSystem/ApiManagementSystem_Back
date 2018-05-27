@@ -29,13 +29,13 @@ public class ProjectService  {
     }
 
     public boolean addProject(Project project){
-        boolean flag = false;
+        boolean flag;
         checkAddProjectParameter(project);
-        if(!projectMapper.insertProject(project)){
+        boolean result = projectMapper.insertProject(project);
+        if(!result) {
             throw new ServerException();
-        }else {
-            flag = true;
         }
+        flag = true;
         return flag;
     }
 
@@ -50,23 +50,23 @@ public class ProjectService  {
 //    }
 
     public boolean updateProject(Project project){
-        boolean flag = false;
+        boolean flag;
         checkUpdateProjectParameter(project);
-        if(!projectMapper.updateProject(project)){
+        boolean result = projectMapper.updateProject(project);
+        if(!result) {
             throw new ServerException();
-        }else {
-            flag = true;
         }
+        flag = true;
         return flag;
     }
 
     public boolean removeProject(int projectId){
-        boolean flag = false;
-        if(!projectMapper.deleteProject(projectId)||!userProjectMapper.deleteUserProject(projectId)){
+        boolean flag;
+        boolean result = projectMapper.deleteProject(projectId)||userProjectMapper.deleteUserProject(projectId);
+        if(!result) {
             throw new ServerException();
-        }else {
-            flag = true;
         }
+        flag = true;
         return flag;
     }
 
