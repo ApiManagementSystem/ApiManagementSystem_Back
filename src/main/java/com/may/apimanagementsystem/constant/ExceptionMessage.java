@@ -17,5 +17,8 @@ public class ExceptionMessage {
     public static final String TEAM_NAME_IS_EMPTY = "团队名称不能为空";
     public static final String DOUBLE_TEAM_NAME = "团队名已经被注册过了";
 
+    /*teamMember*/
+    public static final String TEAM_NOT_EXIST="该团队不存在";
+
 
 }

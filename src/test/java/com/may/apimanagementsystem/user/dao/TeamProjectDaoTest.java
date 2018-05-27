@@ -28,18 +28,18 @@ public class TeamProjectDaoTest {
 
 
    @Test
-    public void deleteTeamProjectTset()
+    public void deleteTeamProjectTest()
    {
        boolean flag=teamProjectMapper.deleteTeamProject(1);
        assertEquals(true, flag);
    }
 
    @Test
-    public void selectTeamproject()
+    public void selectTeamprojectTest()
    {
-       List<Project> projects=teamProjectMapper.selectTeamProject(1001,0,2);
-       System.out.println(projects.get(1).getProjectName());
-       assertEquals(3,projects.size());
+       List<Project> projects=teamProjectMapper.selectTeamProject(1001,0,1);
+       System.out.println(projects.get(0).getProjectName());
+       assertEquals(1,projects.size());
    }
 
 }
