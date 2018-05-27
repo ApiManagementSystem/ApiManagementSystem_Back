@@ -24,8 +24,6 @@ public class ProjectServiceTest {
 
     @Mock
     private ProjectMapper projectMapper;
-    @Mock
-    private UserProjectMapper userProjectMapper;
 
     @InjectMocks
     private ProjectService projectService = new ProjectService();
@@ -90,7 +88,6 @@ public class ProjectServiceTest {
         project.setDescription("wewhj");
         project.setDelFlag(0);
         doReturn(true).when(projectMapper).deleteProject(anyInt());
-        doReturn(true).when(userProjectMapper).deleteUserProject(anyInt());
 
         Project project1 = project;
         project1.setDelFlag(1);
