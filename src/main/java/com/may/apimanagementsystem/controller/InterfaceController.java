@@ -1,5 +1,6 @@
 package com.may.apimanagementsystem.controller;
 
+import com.may.apimanagementsystem.constant.ReturnCode;
 import com.may.apimanagementsystem.dto.ResponseEntity;
 import com.may.apimanagementsystem.po.Interfaces;
 import com.may.apimanagementsystem.po.Project;
@@ -20,7 +21,7 @@ public class InterfaceController {
     @PostMapping
     public ResponseEntity<Interfaces> addInterface(Interfaces interfaces){
         interfaceService.addInterface(interfaces);
-        return new ResponseEntity<>(200,SUCCESS,null);
+        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE, SUCCESS,null);
     }
 
     @GetMapping("projectInterface")
@@ -31,30 +32,30 @@ public class InterfaceController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new ResponseEntity<>(200,SUCCESS,interfaces);
+        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE,SUCCESS,interfaces);
     }
 
     @DeleteMapping("{interfaceId}")
     public ResponseEntity<Interfaces> deleteInterface(@PathVariable int interfaceId){
         interfaceService.removeInterface(interfaceId);
-        return new ResponseEntity<>(200,SUCCESS,null);
+        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE,SUCCESS,null);
     }
 
     @PutMapping("{interfaceId}")
     public ResponseEntity<Interfaces> updateInterface(@PathVariable int interfaceId,Interfaces interfaces){
         interfaceService.updateInterface(interfaces);
-        return new ResponseEntity<>(200,SUCCESS,null);
+        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE,SUCCESS,null);
     }
 
     @GetMapping("{interfaceId}")
     public ResponseEntity<Interfaces> getInterfaceByInterfaceId(@PathVariable int interfaceId,Interfaces interfaces){
         interfaceService.getInterfaceByInterfaceId(interfaceId);
-        return new ResponseEntity<>(200,SUCCESS,interfaces);
+        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE,SUCCESS,interfaces);
     }
 
     @RequestMapping("{projectId}")
     public ResponseEntity<Interfaces> downloadInterface(@PathVariable int projectId) {
         interfaceService.getInterfaceByInterfaceId(projectId);
-        return new ResponseEntity<>(200, SUCCESS, null);
+        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE, SUCCESS, null);
     }
 }
