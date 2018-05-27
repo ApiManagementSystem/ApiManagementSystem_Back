@@ -84,7 +84,7 @@ public class TeamController {
 
     @GetMapping("teamProject")
     public ResponseEntity<List<Project>> selectTeamproject(int teamId, int page) {
-        List<Project> projects = teamProjectServise.searchMyTeamByuserId(teamId, page);
+        List<Project> projects = teamProjectServise.selectTeamProjectByTeamId(teamId, page);
         return new ResponseEntity<>(200, SUCCESS, projects);
     }
 

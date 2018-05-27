@@ -22,7 +22,7 @@ public class TeamProjectServise {
         }
     }
 
-    public List<Project> searchMyTeamByuserId(int teamId, int page) {
+    public List<Project> selectTeamProjectByTeamId(int teamId, int page) {
         int pageSize = 3;
         page = (page - 1) * pageSize;
         return teamProjectMapper.selectTeamProject(teamId, page, pageSize);
