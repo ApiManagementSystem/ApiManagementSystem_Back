@@ -60,7 +60,7 @@ public class TeamDaoTest {
     @Test
     public void searchTeamsByuserIdTest()
     {
-        List<Team> teams=teamMapper.searchMyTeamsByuserId(1000);
+        List<Team> teams=teamMapper.searchMyTeamsByuserId(1000,0,1);
         System.out.println(teams.get(1).getTeamName());
         assertEquals(2,teams.size());
     }

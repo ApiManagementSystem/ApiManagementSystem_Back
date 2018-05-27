@@ -37,7 +37,7 @@ public class TeamProjectDaoTest {
    @Test
     public void selectTeamproject()
    {
-       List<Project> projects=teamProjectMapper.selectTeamProject(1001);
+       List<Project> projects=teamProjectMapper.selectTeamProject(1001,0,2);
        System.out.println(projects.get(1).getProjectName());
        assertEquals(3,projects.size());
    }
