@@ -10,7 +10,6 @@ public interface UserMapper {
 
     boolean insertUser(User user);
 
-
     boolean deleteUser(int userId);
 
     boolean updateUser(User user);

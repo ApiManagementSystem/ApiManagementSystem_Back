@@ -51,25 +51,3 @@ spring:
           enabled: true
           db-type: mysql
       filters: stat,wall,slf4j
-      
-
----
-spring:
-  profiles: dev
-  datasource:
-    url: jdbc:h2:mem:;MODE=MYSQL;
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
-    data: classpath:h2/data_prepare.sql
-    schema: classpath:h2/schema.sql
-  freemarker:
-    #关闭缓存
-    cache: false
-    request-context-attribute: request
-    #模板加载的位置
-    template-loader-path: classpath:/templates
-    #前缀
-    suffix: .html
-    #后缀
-    prefix: /html/

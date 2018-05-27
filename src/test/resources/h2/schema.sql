@@ -92,3 +92,15 @@ CREATE TABLE `user_info` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `team_member_info`;
+
+CREATE TABLE `team_member_info`
+(
+  member_id int auto_increment primary key,
+  user_id   int    not null,
+  team_id   int      not null,
+  join_time datetime      not null,
+  del_flag  tinyint default '0' null
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -24,16 +24,6 @@
 		<java.version>1.8</java.version>
 	</properties>
 
-	<!--<profiles>-->
-		<!--<profile>-->
-			<!--<id>dev</id>-->
-			<!--<properties>-->
-				<!--<environment>dev</environment>-->
-			<!--</properties>-->
-			<!--<activationByDefault>true</activationByDefault>-->
-		<!--</profile>-->
-	<!--</profiles>-->
-
 	<dependencies>
 
 		<dependency>
@@ -87,24 +77,10 @@
 			<version>1.1.9</version>
 		</dependency>
 
-
-		<!--&lt;!&ndash; https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper &ndash;&gt;-->
-		<!--<dependency>-->
-			<!--<groupId>com.github.pagehelper</groupId>-->
-			<!--<artifactId>pagehelper</artifactId>-->
-			<!--<version>5.1.4</version>-->
-		<!--</dependency>-->
-
 		<dependency>
 			<groupId> com.github.pagehelper</groupId>
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
 			<version>1.2.3</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>pagehelper-spring-boot-autoconfigure</artifactId>
-					<groupId>com.github.pagehelper</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -132,17 +108,6 @@
 			<version>5.0.3.Final</version>
 		</dependency>
 
-		<dependency>
-			<groupId> com.github.pagehelper</groupId>
-			<artifactId>pagehelper-spring-boot-starter</artifactId>
-			<version>1.1.1</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>pagehelper-spring-boot-autoconfigure</artifactId>
-					<groupId>com.github.pagehelper</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -160,7 +125,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
-
 </project>

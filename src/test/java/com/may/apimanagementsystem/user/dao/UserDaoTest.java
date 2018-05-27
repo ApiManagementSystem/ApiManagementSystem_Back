@@ -57,9 +57,8 @@ public class UserDaoTest {
     }
 
     @Test
-    public void searchUserByUserNameTest(){
+    public void searUserByUserNameTest(){
         List<User> users = userMapper.searchUsersByUserName("%q%");
         assertEquals(1, users.size());
     }
-
 }

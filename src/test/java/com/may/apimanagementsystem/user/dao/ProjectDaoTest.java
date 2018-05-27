@@ -1,6 +1,5 @@
 package com.may.apimanagementsystem.user.dao;
 
-import com.may.apimanagementsystem.dao.InterfaceMapper;
 import com.may.apimanagementsystem.dao.ProjectMapper;
 import com.may.apimanagementsystem.po.Project;
 import org.junit.Before;

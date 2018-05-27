@@ -21,13 +21,14 @@ public class InterfaceDaoTest {
 
     @Autowired
     private InterfaceMapper interfaceMapper;
+
     private Interfaces interfaces;
 
     @Before
     public void before() {
         interfaces = new Interfaces();
         interfaces.setInterfaceName("TestInterface");
-        interfaces.setInterfaceId(11);
+        interfaces.setInterfaceId(1001);
         interfaces.setMethod("post");
         interfaces.setUrl("/test");
         interfaces.setProjectId(9);

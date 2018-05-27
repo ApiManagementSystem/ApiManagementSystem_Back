@@ -18,6 +18,8 @@ pagehelper:
   support-methods-arguments: true
   params: count=countSql
 
+
+
 spring:
   profiles: dev
   datasource:
@@ -37,3 +39,4 @@ spring:
     suffix: .html
     #后缀
     prefix: /html/
+

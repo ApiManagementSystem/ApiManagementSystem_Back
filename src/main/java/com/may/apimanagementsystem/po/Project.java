@@ -49,5 +49,4 @@ public class Project {
         this.address = address;
     }
 
-
 }
