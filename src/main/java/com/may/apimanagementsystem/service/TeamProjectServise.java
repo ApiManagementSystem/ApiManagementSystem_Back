@@ -17,11 +17,14 @@ public class TeamProjectServise {
     private TeamProjectMapper teamProjectMapper;
 
     public void removeTeamProject(int projectId) {
-        if (!teamProjectMapper.deleteTeamProject(projectId))
+        if (!teamProjectMapper.deleteTeamProject(projectId)) {
             throw new ServerException();
+        }
     }
 
-    public List<Project> searchMyTeamByuserId(int teamId) {
-        return teamProjectMapper.selectTeamProject(teamId);
+    public List<Project> searchMyTeamByuserId(int teamId, int page) {
+        int pageSize = 3;
+        page = (page - 1) * pageSize;
+        return teamProjectMapper.selectTeamProject(teamId, page, pageSize);
     }
 }

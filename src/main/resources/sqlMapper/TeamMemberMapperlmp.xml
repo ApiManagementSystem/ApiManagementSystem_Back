@@ -6,8 +6,8 @@
     <resultMap id="teamMember" type="com.may.apimanagementsystem.po.TeamMember">
         <id property="memberId" column="member_id"/>
         <result property="teamId" column="team_id"/>
-        <result property="joinTime" column="join_time" />
-        <result property="delFlag"  column="del_flag" />
+        <result property="joinTime" column="join_time"/>
+        <result property="delFlag" column="del_flag"/>
         <result property="userId" column="user_id"/>
     </resultMap>
 
@@ -22,25 +22,27 @@
     </resultMap>
 
     <sql id="teamMember_columns">
-        member_id,user_id,team_id,join_time,del_flag
+        member_id, user_id, team_id, join_time, del_flag
     </sql>
     <sql id="user_columns">
-         user_id,user_name,avatar,sex,introduction,phone_number,email
+        user_id, user_name, avatar, sex, introduction, phone_number, email
     </sql>
 
-    <insert id="insertTeamMember" parameterType="com.may.apimanagementsystem.po.TeamMember" keyProperty="memberId" useGeneratedKeys="true">
-          INSERT INTO team_member_info(user_id,team_id,join_time)
-          VALUES (#{userId},#{teamId},#{joinTime})
+    <insert id="insertTeamMember" parameterType="com.may.apimanagementsystem.po.TeamMember" keyProperty="memberId"
+            useGeneratedKeys="true">
+        INSERT INTO team_member_info (user_id, team_id, join_time)
+        VALUES (#{userId}, #{teamId}, #{joinTime})
     </insert>
 
     <delete id="deleteTeamMember" parameterType="com.may.apimanagementsystem.po.TeamMember">
         UPDATE team_member_info
         SET del_flag = '1'
-        WHERE team_id=#{teamId} AND user_id = #{userId}
+        WHERE team_id = #{teamId} AND user_id = #{userId}
     </delete>
 
     <select id="selectTeamMember" parameterType="java.lang.Integer" resultMap="user">
-    SELECT <include refid="user_columns"/>
+        SELECT
+        <include refid="user_columns"/>
         FROM user_info
         WHERE user_info.user_id IN
         (SELECT team_member_info.user_id FROM team_member_info WHERE team_member_info.team_id=#{teamId}

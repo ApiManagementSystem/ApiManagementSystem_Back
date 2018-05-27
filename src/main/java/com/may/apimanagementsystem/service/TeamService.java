@@ -21,30 +21,45 @@ public class TeamService {
 
     public void addTeam(Team team) {
         checkAddTeamParameter(team);
-        if (!teamMapper.insertTeam(team))
+        if (!teamMapper.insertTeam(team)) {
             throw new ServerException();
+        }
     }
 
     private void checkAddTeamParameter(Team team) {
-        if (team.getTeamName() == null) {
+        if (String.valueOf(team.getTeamName()) == null||String.valueOf(team.getCreateuserId()) == null) {
             throw new ParameterException(ExceptionMessage.PARAMETER_CANNOT_NULL);
+        }
+        Team t=teamMapper.findTeamByTeamName(team.getTeamName());
+        if(t.getTeamName().equals(team.getTeamName()))
+        {
+            throw new ParameterException(ExceptionMessage.DOUBLE_TEAM_NAME);
         }
     }
 
     public void removeTeam(int teamId) {
-        if (!teamMapper.deleteTeam(teamId))
+        if (!teamMapper.deleteTeam(teamId)) {
             throw new ServerException();
+        }
     }
 
     public void updateTeam(Team team) {
         checkUpdateTeam(team);
-        if (!teamMapper.updateTeam(team))
+        if (!teamMapper.updateTeam(team)) {
             throw new ServerException();
+        }
+
     }
 
     public void checkUpdateTeam(Team team) {
-        if (team.getTeamName() == null)
+        if (team.getTeamName() == null) {
             throw new ParameterException(ExceptionMessage.TEAM_NAME_IS_EMPTY);
+        }
+        Team t=teamMapper.findTeamByTeamName(team.getTeamName());
+        if(t.getTeamName().equals(team.getTeamName()))
+        {
+            throw new ParameterException(ExceptionMessage.DOUBLE_TEAM_NAME);
+        }
     }
 
     public Team getTeamByTeamId(int teamId) {
@@ -59,9 +74,10 @@ public class TeamService {
         return team;
     }
 
-    public List<Team> searchMyTeamByuserId(int userId) {
-
-        return teamMapper.searchMyTeamsByuserId(userId);
+    public List<Team> searchMyTeamByuserId(int userId, int page) {
+        int pageSize = 5;
+        page = (page - 1) * pageSize;
+        return teamMapper.searchMyTeamsByuserId(userId, page, pageSize);
     }
 
 

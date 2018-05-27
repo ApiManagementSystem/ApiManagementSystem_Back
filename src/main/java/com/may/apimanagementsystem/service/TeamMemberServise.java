@@ -27,6 +27,7 @@ public class TeamMemberServise {
         }
     }
 
+
     private void checkAddTeanMember(TeamMember teamMember) {
         if (String.valueOf(teamMember.getUserId()) == null || String.valueOf(teamMember.getTeamId()) == null || teamMember.getJoinTime() == null) {
             throw new ParameterException(ExceptionMessage.PARAMETER_CANNOT_NULL);
