@@ -1,32 +1,17 @@
 package com.may.apimanagementsystem.service;
 
+import com.github.pagehelper.PageHelper;
 import com.may.apimanagementsystem.dao.InterfaceMapper;
 import com.may.apimanagementsystem.exception.ParameterException;
 import com.may.apimanagementsystem.exception.ServerException;
 import com.may.apimanagementsystem.po.Interfaces;
-<<<<<<< HEAD
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.Objects;
-
-import static com.may.apimanagementsystem.constant.ExceptionMessage.PARAMETER_CANNOT_NULL;
-import static com.may.apimanagementsystem.constant.ExceptionMessage.PROJECT_DESCRIPTION_IS_TOO_LONG;
-import static com.may.apimanagementsystem.constant.ExceptionMessage.PROJECT_NAME_IS_TOO_LONG;
-=======
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
 import java.util.List;
 import java.util.Objects;
 
 import static com.may.apimanagementsystem.constant.ExceptionMessage.*;
->>>>>>> 196c8350b129ecc154857ba2953b0c2d54a32390
 
 @Service
 public class InterfaceService {
@@ -34,30 +19,34 @@ public class InterfaceService {
     @Resource
     private InterfaceMapper interfaceMapper;
 
-    public List<Interfaces> getInterfaces(int projectId) {
-        return interfaceMapper.getInterfaceList(projectId);
+    public List<Interfaces> getInterfaces(int pageNum, int pageSize, int projectId) throws Exception {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Interfaces> interfaceList = interfaceMapper.getInterfaceList(projectId);
+        return interfaceList;
     }
 
-    public void addInterface(Interfaces interfaces) {
+    public boolean addInterface(Interfaces interfaces) {
+        boolean flag = false;
         checkAddInterfaceParameter(interfaces);
         if(!interfaceMapper.insertInterface(interfaces)){
             throw new ServerException();
+        }else {
+            flag = true;
         }
+        return flag;
     }
 
-    public void updateInterface(Interfaces interfaces) {
-<<<<<<< HEAD
-        checkUpdateProjectParameter(interfaces);
-=======
+    public boolean updateInterface(Interfaces interfaces) {
+        boolean flag = false;
         checkUpdateInterfaceParameter(interfaces);
->>>>>>> 196c8350b129ecc154857ba2953b0c2d54a32390
         if(!interfaceMapper.updateInterface(interfaces)){
             throw new ServerException();
+        }else {
+            flag =  true;
         }
+        return flag;
     }
 
-<<<<<<< HEAD
-=======
     private void checkUpdateInterfaceParameter(Interfaces interfaces) {
         if(interfaces.getInterfaceName() != null && interfaces.getDescription() !=null) {
             checkInterfaceName(interfaces.getInterfaceName());
@@ -67,12 +56,14 @@ public class InterfaceService {
         }
     }
 
-
->>>>>>> 196c8350b129ecc154857ba2953b0c2d54a32390
-    public void removeInterface(int interfaceId) {
+    public boolean removeInterface(int interfaceId) {
+        boolean flag = false;
         if(!interfaceMapper.deleteInterface(interfaceId)){
             throw new ServerException();
+        }else {
+            flag = true;
         }
+        return flag;
     }
 
     public Interfaces getInterfaceByInterfaceId(int interfaceId) {
@@ -82,41 +73,33 @@ public class InterfaceService {
     }
 
     private void checkAddInterfaceParameter(Interfaces interfaces){
-<<<<<<< HEAD
-        if(interfaces.getInterfaceName()== null || interfaces.getDescription()==null)
-            throw new ParameterException(PARAMETER_CANNOT_NULL);
-        checkInterfaceName(interfaces.getInterfaceName());
-        checkInterfaceDescription(interfaces.getDescription());
-=======
         if(interfaces.getInterfaceName() != null && interfaces.getDescription() !=null) {
             checkInterfaceName(interfaces.getInterfaceName());
             checkInterfaceDescription(interfaces.getDescription());
         }else{
             throw new ParameterException(PARAMETER_CANNOT_NULL);
         }
->>>>>>> 196c8350b129ecc154857ba2953b0c2d54a32390
     }
 
     private void checkInterfaceName(String interfaceName){
         if (interfaceName.length() > 20)
-            throw new ParameterException(PROJECT_NAME_IS_TOO_LONG);
+            throw new ParameterException(INTERFACE_NAME_IS_TOO_LONG);
     }
 
     private void checkInterfaceDescription(String projectDescription){
         if(projectDescription.length()>255)
-            throw new ParameterException(PROJECT_DESCRIPTION_IS_TOO_LONG);
+            throw new ParameterException(INTERFACE_DESCRIPTION_IS_TOO_LONG);
     }
 
-<<<<<<< HEAD
-    private void checkUpdateProjectParameter(Interfaces interfaces){
-        if(interfaces.getInterfaceName() != null){
-            checkInterfaceName(interfaces.getInterfaceName());
-        }
-        if(interfaces.getDescription() != null){
-            checkInterfaceDescription(interfaces.getDescription());
-        }
-    }
-=======
+//    private void checkUpdateProjectParameter(Interfaces interfaces){
+//        if(interfaces.getInterfaceName() != null){
+//            checkInterfaceName(interfaces.getInterfaceName());
+//        }
+//        if(interfaces.getDescription() != null){
+//            checkInterfaceDescription(interfaces.getDescription());
+//        }
+//    }
+
 
 
 //    public String downloadInterface(HttpServletRequest request, HttpServletResponse response) {
@@ -163,7 +146,5 @@ public class InterfaceService {
 //        }
 //        return null;
 //    }
-
->>>>>>> 196c8350b129ecc154857ba2953b0c2d54a32390
 
 }

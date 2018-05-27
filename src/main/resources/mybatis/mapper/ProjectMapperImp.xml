@@ -2,27 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.may.apimanagementsystem.dao.ProjectMapper">
-<<<<<<< HEAD
-    <resultMap id="Project" type="com.may.apimanagementsystem.po.Project">
-=======
+
     <resultMap id="project" type="com.may.apimanagementsystem.po.Project">
->>>>>>> 196c8350b129ecc154857ba2953b0c2d54a32390
         <id property="projectId" column="project_id"/>
         <result property="projectName" column="project_name"/>
         <result property="description" column="description"/>
         <result property="address" column="project_address"/>
-<<<<<<< HEAD
         <result property="delFlag" column="del_flag"/>
     </resultMap>
 
     <sql id="project_columns">
         project_id,project_name,description,project_address,del_flag
-=======
-    </resultMap>
-
-    <sql id="project_columns">
-        project_id,project_name,description,project_address
->>>>>>> 196c8350b129ecc154857ba2953b0c2d54a32390
     </sql>
 
     <insert id="insertProject" parameterType="com.may.apimanagementsystem.po.Project" keyProperty="projectId" useGeneratedKeys="true">
@@ -30,19 +20,11 @@
         VALUES (#{projectName}, #{description}, #{address})
     </insert>
 
-<<<<<<< HEAD
     <update id="deleteProject" parameterType="java.lang.Integer">
         UPDATE project_info
         SET del_flag = '1'
         WHERE project_id = #{projectId}
     </update>
-=======
-    <delete id="deleteProject" parameterType="java.lang.Integer">
-        UPDATE project_info
-        SET del_flag = '1'
-        WHERE project_id = #{projectId}
-    </delete>
->>>>>>> 196c8350b129ecc154857ba2953b0c2d54a32390
 
     <update id="updateProject" parameterType="com.may.apimanagementsystem.po.Project">
         UPDATE project_info
@@ -60,27 +42,16 @@
         where project_id=#{projectId}
     </update>
 
-<<<<<<< HEAD
-    <select id="findProjectByProjectId" parameterType="java.lang.Integer" resultMap="Project">
-=======
-    <select id="findProjectByProjectId" parameterType="java.lang.Integer" resultMap="project">
->>>>>>> 196c8350b129ecc154857ba2953b0c2d54a32390
+  <select id="findProjectByProjectId" parameterType="java.lang.Integer" resultMap="project">
         SELECT <include refid="project_columns"/>
         FROM project_info
         WHERE project_id=#{projectId} AND del_flag = '0'
     </select>
 
-<<<<<<< HEAD
-    <select id="getProjectList" parameterType="java.lang.Integer" resultMap="Project">
+    <select id="getProjectList" parameterType="java.lang.Integer" resultMap="project">
         SELECT <include refid="project_columns"/>
         FROM project_info
         WHERE project_info.project_id in (SELECT project_user_ref.project_id FROM project_user_ref WHERE project_user_ref.user_id=#{userId}) AND del_flag = '0'
-=======
-    <select id="getUserProject" parameterType="java.lang.Integer" resultMap="project">
-        SELECT <include refid="project_columns"/>
-        FROM project_info
-        WHERE project_info.project_id in (SELECT project_user_ref.user_id FROM project_user_ref WHERE user_id=#{userId}) AND del_flag = '0'
->>>>>>> 196c8350b129ecc154857ba2953b0c2d54a32390
     </select>
 
 </mapper>

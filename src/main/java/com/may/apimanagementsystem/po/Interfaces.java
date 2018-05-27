@@ -1,13 +1,13 @@
 package com.may.apimanagementsystem.po;
 
 public class Interfaces {
+
     String interfaceName;
     String method;
     String description;
     String url;
     String json;
     int projectId;
-<<<<<<< HEAD
     private int delFlag;
 
     public int getDelFlag() {
@@ -17,8 +17,6 @@ public class Interfaces {
     public void setDelFlag(int delFlag) {
         this.delFlag = delFlag;
     }
-=======
->>>>>>> 196c8350b129ecc154857ba2953b0c2d54a32390
 
     public int getInterfaceId() {
         return interfaceId;

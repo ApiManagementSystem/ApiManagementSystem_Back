@@ -27,11 +27,7 @@ public class InterfaceDaoTest {
     public void before() {
         interfaces = new Interfaces();
         interfaces.setInterfaceName("TestInterface");
-<<<<<<< HEAD
         interfaces.setInterfaceId(11);
-=======
-        interfaces.setInterfaceId(100);
->>>>>>> 196c8350b129ecc154857ba2953b0c2d54a32390
         interfaces.setMethod("post");
         interfaces.setUrl("/test");
         interfaces.setProjectId(9);
@@ -63,6 +59,13 @@ public class InterfaceDaoTest {
 
     @Test
     public void updateInterfaceTest() {
+        interfaces = new Interfaces();
+        interfaces.setInterfaceName("TestInterface");
+        interfaces.setInterfaceId(100);
+        interfaces.setMethod("post");
+        interfaces.setUrl("/test");
+        interfaces.setProjectId(9);
+        interfaces.setDescription("test update");
         boolean flag = interfaceMapper.updateInterface(interfaces);
         assertEquals(true, flag);
     }

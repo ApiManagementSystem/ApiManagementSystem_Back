@@ -8,21 +8,19 @@ server:
     context-path: /ApiManagementSystem
 
 mybatis:
-  mapper-locations: classpath*:sqlMapper/*.xml
-  configuration:
-    cache-enabled: true
-    call-setters-on-nulls: true
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+#  configuration:
+#    cache-enabled: true
+#    call-setters-on-nulls: true
 
-<<<<<<< HEAD
 # 分页配置
 pagehelper:
   helper-dialect: mysql
   reasonable: true
   support-methods-arguments: true
   params: count=countSql
-=======
->>>>>>> 196c8350b129ecc154857ba2953b0c2d54a32390
----
+
 spring:
   profiles: prod
   datasource:

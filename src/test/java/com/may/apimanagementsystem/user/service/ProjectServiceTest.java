@@ -1,6 +1,8 @@
 package com.may.apimanagementsystem.user.service;
 
+import com.may.apimanagementsystem.dao.InterfaceMapper;
 import com.may.apimanagementsystem.dao.ProjectMapper;
+import com.may.apimanagementsystem.dao.UserProjectMapper;
 import com.may.apimanagementsystem.po.Project;
 import com.may.apimanagementsystem.service.ProjectService;
 import org.junit.Before;
@@ -23,6 +25,8 @@ public class ProjectServiceTest {
 
     @Mock
     private ProjectMapper projectMapper;
+    @Mock
+    private UserProjectMapper userProjectMapper;
 
     @InjectMocks
     private ProjectService projectService = new ProjectService();
@@ -44,13 +48,13 @@ public class ProjectServiceTest {
         projectList.add(project);
         doReturn(projectList).when(projectMapper).getProjectList(anyInt());
 
-        List<Project> projectList1 = projectService.getList(2,5,1000);
+        List<Project> projectList1 = projectService.getList(1,1,1000);
 
         assertEquals(projectList1,projectList);
     }
 
     @Test
-    public void addProject() throws Exception{
+    public void addProject() throws Exception {
         Project project = new Project();
         project.setProjectId(9);
         project.setProjectName("TestProject");
@@ -58,13 +62,11 @@ public class ProjectServiceTest {
         project.setDescription("This is a test");
         project.setDelFlag(0);
         doReturn(true).when(projectMapper).insertProject(any(Project.class));
-//        Boolean res = projectService.addProject(project);
-//        assertTrue(res);
-        Project project1 = projectService.getProjectByProjectId(1001);
-        assertEquals(project,project1);
+        Boolean res = projectService.addProject(project);
+        assertTrue(res);
     }
 
-    @Test
+   @Test
     public void updateProject() throws Exception{
         Project project = new Project();
         project.setProjectId(667);
@@ -83,17 +85,31 @@ public class ProjectServiceTest {
     @Test
     public void removeProject() throws Exception{
         Project project = new Project();
-        project.setProjectId(668);
+        project.setProjectId(9);
         project.setProjectName("serviceTest3");
         project.setAddress("42r@dwq.com");
         project.setDescription("wewhj");
         project.setDelFlag(0);
-        doReturn(true).when(projectMapper).deleteProject(668);
+        doReturn(true).when(projectMapper).deleteProject(anyInt());
+        doReturn(true).when(userProjectMapper).deleteUserProject(anyInt());
 
         Project project1 = project;
         project1.setDelFlag(1);
-        Boolean res = projectService.removeProject(668);
+        Boolean res = projectService.removeProject(9);
         assertTrue(res);
+    }
+
+    @Test
+    public void getProjectByProjectId() throws Exception{
+        Project project = new Project();
+        project.setProjectId(9);
+        project.setProjectName("TestProject");
+        project.setAddress("www.test.com");
+        project.setDescription("This is a test");
+        project.setDelFlag(0);
+        doReturn(project).when(projectMapper).findProjectByProjectId(anyInt());
+        Project project1 = projectService.getProjectByProjectId(9);
+        assertEquals(project,project1);
     }
 
 

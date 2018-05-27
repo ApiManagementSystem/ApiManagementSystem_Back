@@ -1,11 +1,12 @@
 package com.may.apimanagementsystem.dao;
 
 import com.may.apimanagementsystem.po.Interfaces;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+@MapperScan
 public interface InterfaceMapper {
 
     boolean insertInterface(Interfaces interfaces);

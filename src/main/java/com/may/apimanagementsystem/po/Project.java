@@ -6,7 +6,6 @@ public class Project {
     private int projectId;
     private String description;
     private String address;
-<<<<<<< HEAD
     private int delFlag;
 
 
@@ -17,8 +16,6 @@ public class Project {
     public void setDelFlag(int delFlag) {
         this.delFlag = delFlag;
     }
-=======
->>>>>>> 196c8350b129ecc154857ba2953b0c2d54a32390
 
     public String getProjectName() {
         return projectName;
