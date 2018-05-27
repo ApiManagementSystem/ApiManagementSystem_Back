@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@MapperScan
+
 public interface InterfaceMapper {
 
     boolean insertInterface(Interfaces interfaces);
