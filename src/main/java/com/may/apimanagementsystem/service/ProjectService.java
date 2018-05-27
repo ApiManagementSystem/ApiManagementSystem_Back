@@ -77,14 +77,14 @@ public class ProjectService  {
     }
 
     private void checkAddProjectParameter(Project project){
-        if(project.getProjectName()== null || project.getDescription()==null)
+        if(project.getProjectName()== null )
             throw new ParameterException(PARAMETER_CANNOT_NULL);
         checkProjectName(project.getProjectName());
         checkProjectDescription(project.getDescription());
     }
 
     private void checkAddUserProjectParameter(Project project) {
-        if (project.getProjectName() == null || project.getDescription() == null)
+        if (project.getProjectName() == null )
             throw new ParameterException(PARAMETER_CANNOT_NULL);
         checkProjectName(project.getProjectName());
         checkProjectDescription(project.getDescription());
@@ -102,7 +102,7 @@ public class ProjectService  {
     }
 
     private void checkUpdateProjectParameter(Project project){
-        if(project.getProjectName() != null && project.getDescription() != null){
+        if(project.getProjectName() != null ){
             checkProjectName(project.getProjectName());
             checkProjectDescription(project.getDescription());
         }else{
