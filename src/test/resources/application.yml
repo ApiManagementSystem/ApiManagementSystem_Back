@@ -17,3 +17,8 @@ spring:
     password:
     data: classpath:h2/data_prepare.sql
     schema: classpath:h2/schema.sql
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
