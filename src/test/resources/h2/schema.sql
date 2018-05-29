@@ -7,7 +7,7 @@ CREATE TABLE `interface_info` (
   `description` text,
   `url` varchar(50) DEFAULT NULL,
   `json` text,
-  `porject_id` int(10) unsigned NOT NULL,
+  `project_id` int(10) unsigned NOT NULL,
   `del_flag` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`interface_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
