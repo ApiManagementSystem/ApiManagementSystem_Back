@@ -97,5 +97,4 @@ public class UserService {
 
         return userMapper.searchUsersByUserName(userName);
     }
-
 }

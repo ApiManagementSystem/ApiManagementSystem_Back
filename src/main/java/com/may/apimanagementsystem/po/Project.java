@@ -2,18 +2,19 @@ package com.may.apimanagementsystem.po;
 
 public class Project {
 
-    private int projectId;
     private String projectName;
+    private int projectId;
     private String description;
-    private String projectAddress;
+    private String address;
     private int delFlag;
 
-    public int getProjectId() {
-        return projectId;
+
+    public int getDelFlag() {
+        return delFlag;
     }
 
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
+    public void setDelFlag(int delFlag) {
+        this.delFlag = delFlag;
     }
 
     public String getProjectName() {
@@ -24,6 +25,14 @@ public class Project {
         this.projectName = projectName;
     }
 
+    public int getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -32,19 +41,12 @@ public class Project {
         this.description = description;
     }
 
-    public String getProjectAddress() {
-        return projectAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setProjectAddress(String projectAddress) {
-        this.projectAddress = projectAddress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public int getDelFlag() {
-        return delFlag;
-    }
-
-    public void setDelFlag(int delFlag) {
-        this.delFlag = delFlag;
-    }
 }
