@@ -34,13 +34,9 @@ public class ProjectController {
 //    }
 
     @GetMapping("userProject")
-    public ResponseEntity<List<Project>> showProject(int pageNum, int pageSize,int userId){
+    public ResponseEntity<List<Project>> showProject(int pageNum, int pageSize,int userId) throws Exception {
         List<Project> projects = null;
-        try {
-            projects = projectService.getList(pageNum,pageSize,userId);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        projects = projectService.getList(pageNum,pageSize,userId);
         return new ResponseEntity<>(ReturnCode.SUCCESS_CODE,SUCCESS,projects);
     }
 

@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.may.apimanagementsystem.dao.ProjectMapper;
 import com.may.apimanagementsystem.dao.UserProjectMapper;
 import com.may.apimanagementsystem.exception.ParameterException;
+import com.may.apimanagementsystem.exception.ResourceNotFoundException;
 import com.may.apimanagementsystem.exception.ServerException;
 import com.may.apimanagementsystem.po.Project;
 import org.springframework.stereotype.Service;
@@ -72,7 +73,9 @@ public class ProjectService  {
 
     public Project getProjectByProjectId(int projectId){
         Project project = projectMapper.findProjectByProjectId(projectId);
-        Objects.requireNonNull(project);
+//        Objects.requireNonNull(project);
+        if(project == null)
+            throw new ResourceNotFoundException(NOT_FIND_OBJECT);
         return project;
     }
 

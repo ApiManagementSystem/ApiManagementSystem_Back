@@ -25,13 +25,9 @@ public class InterfaceController {
     }
 
     @GetMapping("projectInterface")
-    public ResponseEntity<List<Interfaces>> showInterface(int pageNum, int pageSize, int projectId){
+    public ResponseEntity<List<Interfaces>> showInterface(int pageNum, int pageSize, int projectId) throws Exception {
         List<Interfaces> interfaces = null;
-        try {
-            interfaces = interfaceService.getInterfaces(pageNum,pageSize,projectId);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        interfaces = interfaceService.getInterfaces(pageNum,pageSize,projectId);
         return new ResponseEntity<>(ReturnCode.SUCCESS_CODE,SUCCESS,interfaces);
     }
 

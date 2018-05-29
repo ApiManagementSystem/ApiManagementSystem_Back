@@ -3,6 +3,7 @@ package com.may.apimanagementsystem.service;
 import com.github.pagehelper.PageHelper;
 import com.may.apimanagementsystem.dao.InterfaceMapper;
 import com.may.apimanagementsystem.exception.ParameterException;
+import com.may.apimanagementsystem.exception.ResourceNotFoundException;
 import com.may.apimanagementsystem.exception.ServerException;
 import com.may.apimanagementsystem.po.Interfaces;
 import org.springframework.stereotype.Service;
@@ -68,7 +69,9 @@ public class InterfaceService {
 
     public Interfaces getInterfaceByInterfaceId(int interfaceId) {
         Interfaces interfaces = interfaceMapper.findInterfaceByInterfaceId(interfaceId);
-        Objects.requireNonNull(interfaces);
+//        Objects.requireNonNull(interfaces);
+        if(interfaces == null)
+            throw new ResourceNotFoundException(NOT_FIND_OBJECT);
         return interfaces;
     }
 

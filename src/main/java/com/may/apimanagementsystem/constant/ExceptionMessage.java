@@ -2,6 +2,7 @@ package com.may.apimanagementsystem.constant;
 
 public class ExceptionMessage {
     public static final String SUCCESS = "操作成功";
+    public static final String NOT_FIND_OBJECT="不能找到对象";
     /*user*/
     public static final String USER_NAME_IS_TOO_LONG = "用户名不要超过二十个字符";
     public static final String DOUBLE_USER_NAME = "用户名已经被注册了";
