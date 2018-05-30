@@ -1,3 +1,12 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+
 server:
   port: 8081
   servlet:
@@ -46,3 +55,4 @@ spring:
           enabled: true
           db-type: mysql
       filters: stat,wall,slf4j
+

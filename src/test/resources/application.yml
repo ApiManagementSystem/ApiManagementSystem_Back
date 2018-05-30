@@ -24,7 +24,8 @@ spring:
     password:
     data: classpath:h2/data_prepare.sql
     schema: classpath:h2/schema.sql
-  freemarker:
+    
+freemarker:
     #关闭缓存
     cache: false
     request-context-attribute: request
@@ -34,4 +35,3 @@ spring:
     suffix: .html
     #后缀
     prefix: /html/
-
