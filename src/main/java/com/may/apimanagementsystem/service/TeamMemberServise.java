@@ -32,7 +32,7 @@ public class TeamMemberServise {
 
 
     private void checkAddTeanMember(TeamMember teamMember) {
-        if (String.valueOf(teamMember.getUserId()) == null || String.valueOf(teamMember.getTeamId()) == null || teamMember.getJoinTime() == null) {
+        if (teamMember.getUserId() == 0|| teamMember.getTeamId()== 0|| teamMember.getJoinTime() == null) {
             throw new ParameterException(ExceptionMessage.PARAMETER_CANNOT_NULL);
         }
         if (teamMapper.findTeamByTeamId(teamMember.getTeamId()) == null) {

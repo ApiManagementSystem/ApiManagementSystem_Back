@@ -27,7 +27,7 @@ public class TeamService {
     }
 
     private void checkAddTeamParameter(Team team) {
-        if (String.valueOf(team.getTeamName()) == null||String.valueOf(team.getCreateuserId()) == null) {
+        if (team.getTeamName() == null||team.getCreateuserId() == 0) {
             throw new ParameterException(ExceptionMessage.PARAMETER_CANNOT_NULL);
         }
         Team t=teamMapper.findTeamByTeamName(team.getTeamName());
