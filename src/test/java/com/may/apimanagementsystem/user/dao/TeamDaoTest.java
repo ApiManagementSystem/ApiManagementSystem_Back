@@ -60,16 +60,23 @@ public class TeamDaoTest {
     @Test
     public void searchTeamsByuserIdTest()
     {
-        List<Team> teams=teamMapper.searchMyTeamsByuserId(1000);
-        System.out.println(teams.get(1).getTeamName());
-        assertEquals(2,teams.size());
+        List<Team> teams=teamMapper.searchMyTeamsByuserId(1000,0,1);
+        System.out.println(teams.get(0).getTeamName());
+        assertEquals(1,teams.size());
     }
 
     @Test
-    public void findTeamByTeamid()
+    public void findTeamByTeamidTest()
     {
         Team team=teamMapper.findTeamByTeamId(1002);
         assertEquals(1001,team.getCreateuserId());
+    }
+
+    @Test
+    public void findTeamByTeamIdTest()
+    {
+        Team team=teamMapper.findTeamByTeamId(1001);
+        assertEquals(1001,team.getTeamId());
     }
 
 }

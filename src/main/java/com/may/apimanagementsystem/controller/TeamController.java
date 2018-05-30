@@ -49,8 +49,8 @@ public class TeamController {
     }
 
     @GetMapping("userTeam")
-    public ResponseEntity<List<Team>> showTeamsByuserId(int userId) {
-        List<Team> teams = teamService.searchMyTeamByuserId(userId);
+    public ResponseEntity<List<Team>> showTeamsByuserId(int userId, int page) {
+        List<Team> teams = teamService.searchMyTeamByuserId(userId, page);
         return new ResponseEntity<>(200, SUCCESS, teams);
     }
 
@@ -83,8 +83,8 @@ public class TeamController {
     }
 
     @GetMapping("teamProject")
-    public ResponseEntity<List<Project>> selectTeamproject(int teamId) {
-        List<Project> projects = teamProjectServise.searchMyTeamByuserId(teamId);
+    public ResponseEntity<List<Project>> selectTeamproject(int teamId, int page) {
+        List<Project> projects = teamProjectServise.selectTeamProjectByTeamId(teamId, page);
         return new ResponseEntity<>(200, SUCCESS, projects);
     }
 

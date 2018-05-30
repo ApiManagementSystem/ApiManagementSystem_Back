@@ -2,6 +2,7 @@ package com.may.apimanagementsystem.service;
 
 
 import com.may.apimanagementsystem.constant.ExceptionMessage;
+import com.may.apimanagementsystem.dao.TeamMapper;
 import com.may.apimanagementsystem.dao.TeamMemberMapper;
 import com.may.apimanagementsystem.exception.ParameterException;
 import com.may.apimanagementsystem.exception.ServerException;
@@ -19,6 +20,8 @@ public class TeamMemberServise {
 
     @Autowired
     private TeamMemberMapper teamMemberMapper;
+    @Autowired
+    private TeamMapper teamMapper;
 
     public void addTeamMerber(TeamMember teamMember) {
         checkAddTeanMember(teamMember);
@@ -27,9 +30,13 @@ public class TeamMemberServise {
         }
     }
 
+
     private void checkAddTeanMember(TeamMember teamMember) {
-        if (String.valueOf(teamMember.getUserId()) == null || String.valueOf(teamMember.getTeamId()) == null || teamMember.getJoinTime() == null) {
+        if (teamMember.getUserId() == 0|| teamMember.getTeamId()== 0|| teamMember.getJoinTime() == null) {
             throw new ParameterException(ExceptionMessage.PARAMETER_CANNOT_NULL);
+        }
+        if (teamMapper.findTeamByTeamId(teamMember.getTeamId()) == null) {
+            throw new ParameterException(ExceptionMessage.TEAM_NOT_EXIST);
         }
     }
 
