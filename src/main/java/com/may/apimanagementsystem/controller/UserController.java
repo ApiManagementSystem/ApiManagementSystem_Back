@@ -12,6 +12,7 @@ import static com.may.apimanagementsystem.constant.ExceptionMessage.SUCCESS;
 
 @RestController
 @RequestMapping("user")
+@CrossOrigin
 public class UserController {
 
     @Autowired

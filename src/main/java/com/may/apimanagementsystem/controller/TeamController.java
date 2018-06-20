@@ -19,6 +19,7 @@ import static com.may.apimanagementsystem.constant.ExceptionMessage.SUCCESS;
 
 @RestController
 @RequestMapping("team")
+@CrossOrigin
 public class TeamController {
 
 

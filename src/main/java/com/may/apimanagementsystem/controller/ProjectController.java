@@ -16,6 +16,7 @@ import static com.may.apimanagementsystem.constant.ExceptionMessage.SUCCESS;
 
 @RestController
 @RequestMapping("project")
+@CrossOrigin
 public class ProjectController {
 
     @Autowired

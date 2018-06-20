@@ -13,6 +13,7 @@ import static com.may.apimanagementsystem.constant.ExceptionMessage.SUCCESS;
 
 @RestController
 @RequestMapping("message")
+@CrossOrigin
 public class MessageController {
 
     @Autowired
