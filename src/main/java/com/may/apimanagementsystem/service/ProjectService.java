@@ -7,9 +7,12 @@ import com.may.apimanagementsystem.exception.ParameterException;
 import com.may.apimanagementsystem.exception.ResourceNotFoundException;
 import com.may.apimanagementsystem.exception.ServerException;
 import com.may.apimanagementsystem.po.Project;
+import com.may.apimanagementsystem.po.ProjectUserRef;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.net.HttpURLConnection;
 import java.util.List;
 
 import static com.may.apimanagementsystem.constant.ExceptionMessage.*;
@@ -19,8 +22,6 @@ public class ProjectService  {
 
     @Resource
     private ProjectMapper projectMapper;
-    @Resource
-    private UserProjectMapper userProjectMapper;
 
     public List<Project> getList(int pageNum, int pageSize,int userId) throws Exception {
         PageHelper.startPage(pageNum, pageSize);
@@ -28,9 +29,19 @@ public class ProjectService  {
         return projectList;
     }
 
+    public void addteamproject(Project project) {
+        if (!projectMapper.insertProject(project)) {
+            throw new ServerException();
+        }
+    }
+
     public boolean addProject(Project project){
         boolean flag;
         checkAddProjectParameter(project);
+        Project t = projectMapper.findProjectByProjectName(project.getProjectName());
+        if(t!=null){
+            throw new ParameterException(PROJECT_EXIST);
+        }
         boolean result = projectMapper.insertProject(project);
         if(!result) {
             throw new ServerException();
@@ -38,16 +49,6 @@ public class ProjectService  {
         flag = true;
         return flag;
     }
-
-//    public boolean addProjectByUser(ProjectUserRef projectUserRef){
-//        boolean flag = false;
-//        if(!userProjectMapper.insertUserProjectByUser(projectUserRef)){
-//            throw new ServerException();
-//        }else {
-//            flag = true;
-//        }
-//        return flag;
-//    }
 
     public boolean updateProject(Project project){
         boolean flag;
@@ -62,7 +63,7 @@ public class ProjectService  {
 
     public boolean removeProject(int projectId){
         boolean flag;
-        boolean result = projectMapper.deleteProject(projectId)||userProjectMapper.deleteUserProject(projectId);
+        boolean result = projectMapper.deleteProject(projectId);
         if(!result) {
             throw new ServerException();
         }
@@ -78,8 +79,16 @@ public class ProjectService  {
         return project;
     }
 
+    public Project getProjectByProjectName(String projectName){
+        Project project = projectMapper.findProjectByProjectName(projectName);
+//        Objects.requireNonNull(project);
+        if(project == null)
+            throw new ResourceNotFoundException(NOT_FIND_OBJECT);
+        return project;
+    }
+
     private void checkAddProjectParameter(Project project){
-        if(project.getProjectName()== null )
+        if(project.getProjectName() == null )
             throw new ParameterException(PARAMETER_CANNOT_NULL);
         checkProjectName(project.getProjectName());
         checkProjectDescription(project.getDescription());

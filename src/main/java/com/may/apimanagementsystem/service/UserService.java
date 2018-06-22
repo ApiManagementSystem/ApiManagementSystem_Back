@@ -4,6 +4,7 @@ import com.may.apimanagementsystem.dao.UserMapper;
 import com.may.apimanagementsystem.exception.ParameterException;
 import com.may.apimanagementsystem.exception.ServerException;
 import com.may.apimanagementsystem.po.User;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -31,16 +32,18 @@ public class UserService {
         Objects.requireNonNull(getUser, USERNAME_NOT_EXIST);
         if (!user.getPassword().equals(getUser.getPassword()))
             throw new ParameterException(PASSWORD_WRONG);
-        return user;
+        return getUser;
     }
 
     private void checkAddUserParameter(User user) {
         if (user.getUserName() == null || user.getPassword() == null ||
-                user.getEmail() == null)
+                user.getEmail() == null || !StringUtils.isNotBlank(user.getUserName())
+                || !StringUtils.isNotBlank(user.getPassword())||!StringUtils.isNotBlank(user.getEmail())
+                )
             throw new ParameterException(PARAMETER_CANNOT_NULL);
         checkUserName(user.getUserName());
         checkPassword(user.getPassword());
-        checkEmail(user.getEmail());
+        //checkEmail(user.getEmail());
     }
 
     public void removeUser(int userId) {

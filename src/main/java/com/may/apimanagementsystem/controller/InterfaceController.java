@@ -45,9 +45,9 @@ public class InterfaceController {
     }
 
     @GetMapping("{interfaceId}")
-    public ResponseEntity<Interfaces> getInterfaceByInterfaceId(@PathVariable int interfaceId,Interfaces interfaces){
-        interfaceService.getInterfaceByInterfaceId(interfaceId);
-        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE,SUCCESS,interfaces);
+    public ResponseEntity<Interfaces> getInterfaceByInterfaceId(@PathVariable int interfaceId){
+       Interfaces interfacess= interfaceService.getInterfaceByInterfaceId(interfaceId);
+        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE,SUCCESS,interfacess);
     }
 
     @RequestMapping("{projectId}")

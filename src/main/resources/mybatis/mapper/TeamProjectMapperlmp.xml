@@ -18,21 +18,28 @@
     </resultMap>
 
     <sql id="project_columns">
-        project_id,project_name,description,del_flag
+        project_id, project_name, description, del_flag
     </sql>
 
-    <select id="selectTeamProject" parameterType="java.lang.Integer" resultMap="project">
-        SELECT <include refid="project_columns"/>
+    <select id="selectTeamProject" resultMap="project">
+        SELECT
+        <include refid="project_columns"/>
         FROM project_info
         WHERE project_info.project_id IN
         (SELECT project_team_ref.project_id FROM project_team_ref WHERE project_team_ref.team_id=#{teamId}
         AND project_team_ref.del_flag='0')
+        LIMIT #{page},#{pageSize}
     </select>
 
     <delete id="deleteTeamProject" parameterType="java.lang.Integer">
         UPDATE project_team_ref
         SET del_flag = '1'
-        WHERE project_id=#{projectId}
+        WHERE project_id = #{projectId}
     </delete>
+
+    <insert id="insertTeamProject" parameterType="com.may.apimanagementsystem.po.TeamProject">
+        insert into project_team_ref(project_id, team_id, create_user_id)
+        values (#{projectId},#{teamId},#{createUserId})
+    </insert>
 
 </mapper>

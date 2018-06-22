@@ -1,6 +1,7 @@
 package com.may.apimanagementsystem.dao;
 
 import com.may.apimanagementsystem.po.Team;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,6 +20,6 @@ public interface TeamMapper {
 
     Team findTeamByTeamName(String teamName);
 
-    List<Team> searchMyTeamsByuserId(int userId);
+    List<Team> searchMyTeamsByuserId(@Param("userId") int userId, @Param("page") int page, @Param("pageSize") int pageSize);
 
 }

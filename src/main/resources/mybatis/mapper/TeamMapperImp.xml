@@ -11,11 +11,12 @@
     </resultMap>
 
     <sql id="team_columns">
-        team_id,team_name,description,del_flag,create_user_id
+        team_id, team_name, description, del_flag, create_user_id
     </sql>
 
-    <insert id="insertTeam" parameterType="com.may.apimanagementsystem.po.Team" keyProperty="teamId" useGeneratedKeys="true" >
-        INSERT INTO team_info(team_name,description,create_user_id)
+    <insert id="insertTeam" parameterType="com.may.apimanagementsystem.po.Team" keyProperty="teamId"
+            useGeneratedKeys="true">
+        INSERT INTO team_info (team_name, description, create_user_id)
         VALUES (#{teamName}, #{description}, #{createuserId})
     </insert>
 
@@ -39,23 +40,32 @@
     </update>
 
     <select id="findTeamByTeamId" parameterType="java.lang.Integer" resultMap="team">
-        SELECT <include refid="team_columns"/>
+        SELECT
+        <include refid="team_columns"/>
         FROM team_info
-        WHERE team_id=#{teamId}  AND del_flag = '0'
+        WHERE team_id=#{teamId} AND del_flag = '0'
     </select>
 
     <select id="findTeamByTeamName" parameterType="java.lang.String" resultMap="team">
-        SELECT <include refid="team_columns"/>
+        SELECT
+        <include refid="team_columns"/>
         FROM team_info
         WHERE team_name=#{teamName} AND del_flag = '0'
     </select>
 
 
-    <select id="searchMyTeamsByuserId" parameterType="java.lang.Integer" resultMap="team">
-        SELECT team_id,team_name,description
+    <select id="searchMyTeamsByuserId" resultMap="team">
+        SELECT
+            team_id,
+            team_name,
+            description
         FROM team_info
         WHERE team_info.team_id IN
-        (SELECT team_member_info.team_id FROM team_member_info WHERE team_member_info.user_id=#{userId}
-        AND team_member_info.del_flag='0')
+              (SELECT team_member_info.team_id
+               FROM team_member_info
+               WHERE team_member_info.user_id = #{userId}
+                     AND team_member_info.del_flag = '0')
+                     AND team_info.del_flag= '0'
+        LIMIT #{page},#{pageSize}
     </select>
 </mapper>

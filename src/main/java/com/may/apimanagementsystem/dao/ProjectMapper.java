@@ -20,4 +20,6 @@ public interface ProjectMapper {
 
     Project findProjectByProjectId(int projectId);
 
+    Project findProjectByProjectName(String projectName);
+
 }

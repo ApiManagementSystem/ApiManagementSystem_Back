@@ -5,7 +5,7 @@ import com.may.apimanagementsystem.po.ProjectUserRef;
 
 public interface UserProjectMapper {
 
-//    boolean insertUserProjectByUser(ProjectUserRef projectUserRef);
+    boolean insertUserProjectByUser(ProjectUserRef projectUserRef);
 
     boolean deleteUserProject(int projectId);
 

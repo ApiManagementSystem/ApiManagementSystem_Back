@@ -33,12 +33,16 @@ public class TeamController {
 
     @PostMapping
     public ResponseEntity<Team> createTeam(Team team) {
+        System.out.println(team.getTeamName());
+        System.out.println(team.getDescription());
+        System.out.println(team.getCreateuserId());
         teamService.addTeam(team);
         return new ResponseEntity<>(200, SUCCESS, team);
     }
 
     @DeleteMapping("{teamId}")
     public ResponseEntity<Team> deleteTeam(@PathVariable int teamId) {
+        System.out.println(teamId);
         teamService.removeTeam(teamId);
         return new ResponseEntity<>(200, SUCCESS, null);
     }
@@ -50,8 +54,8 @@ public class TeamController {
     }
 
     @GetMapping("userTeam")
-    public ResponseEntity<List<Team>> showTeamsByuserId(int userId) {
-        List<Team> teams = teamService.searchMyTeamByuserId(userId);
+    public ResponseEntity<List<Team>> showTeamsByuserId(int userId, int page) {
+        List<Team> teams = teamService.searchMyTeamByuserId(userId, page);
         return new ResponseEntity<>(200, SUCCESS, teams);
     }
 
@@ -77,16 +81,22 @@ public class TeamController {
 
     /*团队项目*/
 
-    @DeleteMapping("teamProject")
-    public ResponseEntity<TeamProject> deleteTeamproject(int projectId) {
+    @DeleteMapping("teamProject/{projectId}")
+    public ResponseEntity<TeamProject> deleteTeamproject(@PathVariable int projectId) {
         teamProjectServise.removeTeamProject(projectId);
         return new ResponseEntity<>(200, SUCCESS, null);
     }
 
     @GetMapping("teamProject")
-    public ResponseEntity<List<Project>> selectTeamproject(int teamId) {
-        List<Project> projects = teamProjectServise.searchMyTeamByuserId(teamId);
+    public ResponseEntity<List<Project>> selectTeamproject(int teamId, int page) {
+        List<Project> projects = teamProjectServise.selectTeamProjectByTeamId(teamId, page);
         return new ResponseEntity<>(200, SUCCESS, projects);
+    }
+
+    @PostMapping("teamProject")
+    public ResponseEntity<TeamProject> createTeamProject(TeamProject teamProject) {
+        teamProjectServise.addTeamProject(teamProject);
+        return new ResponseEntity<>(200, SUCCESS, teamProject);
     }
 
 

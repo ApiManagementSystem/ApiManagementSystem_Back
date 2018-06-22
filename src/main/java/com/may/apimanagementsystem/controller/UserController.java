@@ -27,7 +27,7 @@ public class UserController {
     @PostMapping("login")
     public ResponseEntity<User> login(User user) {
         User userGet = userService.checkUser(user);
-        return new ResponseEntity<>(200, SUCCESS, userGet);
+        return new ResponseEntity(200, SUCCESS, userGet.getUserId());
     }
 
     @GetMapping("{userId}")

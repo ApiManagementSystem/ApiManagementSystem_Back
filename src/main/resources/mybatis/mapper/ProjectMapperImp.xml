@@ -48,6 +48,12 @@
         WHERE project_id=#{projectId} AND del_flag = '0'
     </select>
 
+    <select id="findProjectByProjectName" parameterType="java.lang.String" resultMap="project">
+        SELECT <include refid="project_columns"/>
+        FROM project_info
+        WHERE project_name=#{projectName} AND del_flag = '0'
+    </select>
+
     <select id="getProjectList" parameterType="java.lang.Integer" resultMap="project">
         SELECT <include refid="project_columns"/>
         FROM project_info

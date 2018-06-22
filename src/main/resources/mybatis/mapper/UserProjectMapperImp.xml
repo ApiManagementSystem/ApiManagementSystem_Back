@@ -12,7 +12,7 @@
         project_id,user_id,del_flag
     </sql>
 
-    <insert id="insertProjectByUser" parameterType="com.may.apimanagementsystem.po.ProjectUserRef" keyProperty="projectId" useGeneratedKeys="true">
+    <insert id="insertUserProjectByUser" parameterType="com.may.apimanagementsystem.po.ProjectUserRef" keyProperty="projectId" >
         INSERT INTO project_user_ref(project_id, user_id)
         VALUES (#{projectId}, #{userId})
     </insert>

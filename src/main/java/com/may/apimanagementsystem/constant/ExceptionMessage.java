@@ -17,6 +17,7 @@ public class ExceptionMessage {
     /*project*/
     public static final String PROJECT_NAME_IS_TOO_LONG = "项目名不要超过二十个字符";
     public static final String PROJECT_DESCRIPTION_IS_TOO_LONG = "项目描述不要超过二百五十五个字符";
+    public static final String PROJECT_EXIST ="项目已存在";
 
     /*interface*/
     public static final String INTERFACE_NAME_IS_TOO_LONG = "接口名不要超过二十个字符";
@@ -24,5 +25,9 @@ public class ExceptionMessage {
 
     /*team*/
     public static final String TEAM_NAME_IS_EMPTY = "团队名称不能为空";
+    public static final String DOUBLE_TEAM_NAME = "团队名已经被注册过了";
+
+    /*teamMember*/
+    public static final String TEAM_NOT_EXIST="该团队不存在";
 
 }
